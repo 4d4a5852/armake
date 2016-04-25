@@ -4,13 +4,23 @@ branches:
   only:
   - master
 
-platform:
-  - x64
-  - x86
+environment:
+  matrix:
+    - PRJ_GEN: "Visual Studio 14 2015"
+    - PRJ_GEN: "Visual Studio 14 2015 Win64"
+    - PRJ_GEN: "MinGW Makefiles"
 
-build_script:
+matrix:
+  allow_failures:
+    - PRJ_GEN: "Visual Studio 14 2015"
+    - PRJ_GEN: "Visual Studio 14 2015 Win64"
+
+before_build:
+  - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+  - set PATH=C:\MinGW\bin;%PATH%
   - mkdir build
   - cd build
-  - if %PLATFORM% == x86 cmake .. -G "Visual Studio 14 2015"
-  - if %PLATFORM% == x64 cmake .. -G "Visual Studio 14 2015 Win64"
+  - cmake .. -G "%PRJ_GEN%"
+
+build_script:
   - cmake --build .
