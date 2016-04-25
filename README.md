@@ -1,5 +1,7 @@
 armake
 ======
+[![Build Status](https://travis-ci.org/4d4a5852/armake.svg?branch=master)](https://travis-ci.org/4d4a5852/armake)
+[![Build status](https://ci.appveyor.com/api/projects/status/0oouk0cjf3voxjwq/branch/master?svg=true)](https://ci.appveyor.com/project/4d4a5852/armake/branch/master)
 
 [![](https://img.shields.io/travis/KoffeinFlummi/armake.svg?style=flat-square)](https://travis-ci.org/KoffeinFlummi/armake)
 [![](https://img.shields.io/badge/license-GPLv2-red.svg?style=flat-square)](https://github.com/KoffeinFlummi/armake/blob/master/LICENSE)
