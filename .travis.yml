@@ -1,7 +1,7 @@
 language: c
 branches:
   only:
-    - master
+    - cmake
 env:
   - CFLAGS="-m32"
   - CFLAGS="-m64"
