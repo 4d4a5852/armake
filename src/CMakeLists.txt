@@ -1,3 +1,6 @@
-add_executable(armake binarize.c build.c docopt.c filesystem.c main.c model_config.c p3d.c preprocess.c rapify.c utils.c)
+#according to cmake doc not recommend - just don't forget to run cmake
+file(GLOB ARMAKE_SOURCES *.c)
+
+add_executable(armake ${ARMAKE_SOURCES})
 
 target_link_libraries(armake minilzo sha1 m)
