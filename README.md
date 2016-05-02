@@ -1,6 +1,6 @@
 armake
 ======
-[![Build Status](https://travis-ci.org/4d4a5852/armake.svg?branch=cmake)](https://travis-ci.org/4d4a5852/armake)
+[![Build Status](https://travis-ci.org/4d4a5852/armake.svg?branch=cmake)](https://travis-ci.org/4d4a5852/armake/builds)
 [![Build status](https://ci.appveyor.com/api/projects/status/0oouk0cjf3voxjwq/branch/cmake?svg=true)](https://ci.appveyor.com/project/4d4a5852/armake/branch/cmake)
 
 [![](https://img.shields.io/travis/KoffeinFlummi/armake.svg?style=flat-square)](https://travis-ci.org/KoffeinFlummi/armake)
