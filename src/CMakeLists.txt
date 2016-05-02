@@ -1,5 +1,6 @@
 #according to cmake doc not recommend - just don't forget to run cmake
 file(GLOB ARMAKE_SOURCES *.c)
+list(SORT ARMAKE_SOURCES)
 
 add_executable(armake ${ARMAKE_SOURCES})
 
