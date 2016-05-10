@@ -2,6 +2,7 @@
 file(GLOB ARMAKE_SOURCES *.c)
 list(SORT ARMAKE_SOURCES)
 
+add_definitions(-DVERSION="vTODO")
 add_executable(armake ${ARMAKE_SOURCES})
 
 target_link_libraries(armake minilzo sha1 m)
