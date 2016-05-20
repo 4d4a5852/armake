@@ -5,4 +5,7 @@ list(SORT ARMAKE_SOURCES)
 add_definitions(-DVERSION="vTODO")
 add_executable(armake ${ARMAKE_SOURCES})
 
-target_link_libraries(armake minilzo sha1 m)
+find_package(OpenSSL REQUIRED)
+
+include_directories(${OPENSSL_INCLUDE_DIR})
+target_link_libraries(armake minilzo sha1 m ${OPENSSL_LIBRARIES})
