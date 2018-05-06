@@ -46,6 +46,9 @@ void pad_hash(unsigned char *hash, char *buffer, size_t buffsize) {
     memcpy(buffer + buffsize - 20, hash, 20);
 }
 
+int compare_filenames(const void *a, const void *b) {
+    return strcmp(*(const char **)a, *(const char **)b);
+}
 
 int sign_pbo(char *path_pbo, char *path_privatekey, char *path_signature) {
     SHA1Context sha;
@@ -67,6 +70,8 @@ int sign_pbo(char *path_pbo, char *path_privatekey, char *path_signature) {
     uint32_t keylength;
     uint32_t exponent_le;
     char buffer[4096];
+    char *filenames[4096];
+    long nfilenames;
     char prefix[512];
     char keyname[512];
     unsigned char hash1[20];
@@ -103,16 +108,24 @@ int sign_pbo(char *path_pbo, char *path_privatekey, char *path_signature) {
 
     // calculate name hash
     SHA1Reset(&sha);
+    nfilenames = 0;
     do {
         fp_tmp = ftell(f_pbo);
         fread(buffer, sizeof(buffer), 1, f_pbo);
         lower_case(buffer);
         fseek(f_pbo, fp_tmp + strlen(buffer) + 17, SEEK_SET);
         fread(&temp, sizeof(temp), 1, f_pbo);
-        if (temp > 0)
-            SHA1Input(&sha, (unsigned char *)buffer, strlen(buffer));
+        if (temp > 0) {
+            filenames[nfilenames] = calloc(strlen(buffer) + 1, sizeof(char));
+            strcpy(filenames[nfilenames], buffer);
+            nfilenames++;
+        }
     } while (strlen(buffer) > 0);
-
+    qsort(filenames, nfilenames, sizeof(char *), compare_filenames);
+    for (i = 0; i < nfilenames; i++) {
+        SHA1Input(&sha, (unsigned char *)filenames[i], strlen(filenames[i]));
+        free(filenames[i]);
+    }
     if (!SHA1Result(&sha)) {
         fclose(f_pbo);
         return 1;
